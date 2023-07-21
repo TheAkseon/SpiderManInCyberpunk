@@ -64,7 +64,7 @@ public class Boss : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Web webBullet))
+        if (other.gameObject.TryGetComponent(out WebBehaviour webBullet))
         {
             Instantiate(_hitEffectPrefab, other.gameObject.transform.position, transform.rotation);
             Destroy(other.gameObject);

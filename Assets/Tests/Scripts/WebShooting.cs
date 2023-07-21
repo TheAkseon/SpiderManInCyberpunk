@@ -1,83 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WebShooting : MonoBehaviour
 {
     [SerializeField] private GameObject Web;
-    [SerializeField] private GameObject Player;
-    [SerializeField] private float TimeBetweenShots;
-    [SerializeField] private bool _isMultipleshots = false;
+    [SerializeField] private float _baseFiringFrequency = 1f;
+    [SerializeField] private float _firingFrequency = 1f;
 
-    public PlayerMove PlayerMoveScript;
-    
-    private float startTimeBetweenShots;
-
-    public static WebShooting instance;
-
-    private void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-        }
-    }
+    private Transform _playertransform;
+    private string _shootMode = "SingleShootMode";
+    private float _currentTimeBetweenShots;
 
     private void Start()
     {
-        startTimeBetweenShots = TimeBetweenShots;
-        Player.GetComponent<Transform>();
+        _playertransform = GetComponent<Transform>();
+        _currentTimeBetweenShots = 1 / _firingFrequency;
     }
 
-    public void ChangeShootMode()
-    {
-        if (_isMultipleshots == true)
-        {
-            _isMultipleshots = false;
-        }
-        else
-        {
-            _isMultipleshots = true;
-        }
-    }
+    public void ChangeShootMode(GateType mode) => _shootMode = mode.ToString();
+    public void ChangeFiringFrequency(float value) => _firingFrequency = _firingFrequency + value < _baseFiringFrequency ? _baseFiringFrequency : _firingFrequency + value;
 
     void FixedUpdate()
     {
-        if (PlayerMoveScript.CanMove())
+        if (GetComponent<PlayerMove>().CanMove())
         {
-            if (TimeBetweenShots <= 0)
-            {
-               /* Quaternion rotation = Player.transform.rotation;
-                float changeAngle = 2f;
-                for (int i = 0; i < _numOfShots; i++)
-                {
-                    Instantiate(Web, Player.transform.position + new Vector3(0f, 1f, 0.5f), rotation);
-                    rotation = Quaternion.Euler(0f, rotation.y + changeAngle, 0f) * rotation;
-                    changeAngle *= (-1);
-                }*/
-                if (_isMultipleshots)
-                {
-                    Quaternion rotation = Player.transform.rotation;
-                    Quaternion leftRotation = Quaternion.Euler(0f, -3f, 0f) * rotation;
-                    Quaternion rightRotation = Quaternion.Euler(0f, 3f, 0f) * rotation;
+            print("Damage: " + WebBullet.GetDamage() + "   LifeTime: " + WebBullet.GetLifeTime() + "\nFrequency: " + _firingFrequency + "   ShootMode: " + _shootMode);
 
-                    Instantiate(Web, Player.transform.position + new Vector3(0f, 1f, 0.5f), rotation);
-                    Instantiate(Web, Player.transform.position + new Vector3(0f, 1f, 0.5f), leftRotation);
-                    Instantiate(Web, Player.transform.position + new Vector3(0f, 1f, 0.5f), rightRotation);
-                }
-                else
-                {
-                    Quaternion rotation = Player.transform.rotation;
-                    Instantiate(Web, Player.transform.position + new Vector3(0f, 1f, 0.5f), rotation);
-                }
-                TimeBetweenShots = startTimeBetweenShots;
-                //Instantiate(Web, Player.transform.position + new Vector3(0f, 1f, 0.5f), Player.transform.rotation);
-            }
-            else
+            if (_currentTimeBetweenShots <= 0)
             {
-                TimeBetweenShots -= Time.deltaTime;
+                Quaternion rotation = _playertransform.rotation;
+                Quaternion leftRotation = Quaternion.Euler(0f, -3f, 0f) * rotation;
+                Quaternion rightRotation = Quaternion.Euler(0f, 3f, 0f) * rotation;
+
+                switch (_shootMode)
+                {
+                    case "SingleShootMode":
+                        Instantiate(Web, _playertransform.position + new Vector3(0f, 1f, 0.5f), rotation);
+                        break;
+                    case "DoubleShootMode":
+                        Instantiate(Web, _playertransform.position + new Vector3(0f, 1f, 0.5f), rotation);
+                        Instantiate(Web, _playertransform.position + new Vector3(0f, 1f, 0.5f), leftRotation);
+                        break;
+                    case "TripleShootMode":
+                        Instantiate(Web, _playertransform.position + new Vector3(0f, 1f, 0.5f), rotation);
+                        Instantiate(Web, _playertransform.position + new Vector3(0f, 1f, 0.5f), leftRotation);
+                        Instantiate(Web, _playertransform.position + new Vector3(0f, 1f, 0.5f), rightRotation);
+                        break;
+                    default:
+                        Debug.LogError("Uncorrect shoot mode!");
+                        break;
+                }
+
+                _currentTimeBetweenShots = 1 / _firingFrequency;
             }
-        }
+            _currentTimeBetweenShots -= Time.fixedDeltaTime;
+        } 
     }
 }
