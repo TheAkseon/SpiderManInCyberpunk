@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class WebShooting : MonoBehaviour
 {
+    public static WebShooting Instance;
+
     [SerializeField] private GameObject Web;
     [SerializeField] private float _baseFiringFrequency = 1f;
     [SerializeField] private float _firingFrequency = 1f;
@@ -9,6 +11,12 @@ public class WebShooting : MonoBehaviour
     private Transform _playertransform;
     private string _shootMode = "SingleShootMode";
     private float _currentTimeBetweenShots;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
 
     private void Start()
     {
@@ -21,10 +29,10 @@ public class WebShooting : MonoBehaviour
 
     void FixedUpdate()
     {
+        //print("Damage: " + WebBullet.GetDamage() + "   LifeTime: " + WebBullet.GetLifeTime() + "\nFrequency: " + _firingFrequency + "   ShootMode: " + _shootMode);
+
         if (GetComponent<PlayerMove>().CanMove())
         {
-            print("Damage: " + WebBullet.GetDamage() + "   LifeTime: " + WebBullet.GetLifeTime() + "\nFrequency: " + _firingFrequency + "   ShootMode: " + _shootMode);
-
             if (_currentTimeBetweenShots <= 0)
             {
                 Quaternion rotation = _playertransform.rotation;

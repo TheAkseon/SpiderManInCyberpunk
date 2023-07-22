@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyDie : MonoBehaviour
 {
-    [SerializeField] private ForceManager _forceManager;
-
     private List<Enemy> _enemies;
 
     private void OnEnable()
@@ -31,9 +29,7 @@ public class EnemyDie : MonoBehaviour
         PlayerModifier playerModifier = FindObjectOfType<PlayerModifier>();
         if (playerModifier)
         {
-            playerModifier.AddWidth(enemy.BaseNumberOfHealth);
-            playerModifier.AddHeight(enemy.BaseNumberOfHealth);
-            _forceManager.AddForce(enemy.BaseNumberOfHealth);
+            CoinManager.Instance.AddMoney(enemy.BaseNumberOfHealth);
             /*SoundsManager.Instance.PlaySound("EnemyHit");
             SoundsManager.Instance.PlaySound("Teleport");*/
         }

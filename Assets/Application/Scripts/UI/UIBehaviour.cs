@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -18,9 +19,14 @@ public class UIBehaviour : MonoBehaviour
     [Header("Player")]
     [SerializeField] TextMeshProUGUI _levelText;
     [SerializeField] TextMeshProUGUI _coinText;
-    [SerializeField] TextMeshProUGUI _widthCostText;
-    [SerializeField] TextMeshProUGUI _heightCostText;
-    private GameObject _forceCanvas;
+
+    [Header("Improvements")]
+    public TextMeshProUGUI _damageImprovementCount;
+    public TextMeshProUGUI _firingRateImprovementCount;
+    [SerializeField] TextMeshProUGUI _damageCostText;
+    [SerializeField] TextMeshProUGUI _firingRateCostText;
+    private readonly string Damage = "width";
+    private readonly string FiringRate = "height";
 
     [Header("Sound")]
     [SerializeField] Button musicButton;
@@ -32,13 +38,8 @@ public class UIBehaviour : MonoBehaviour
     [SerializeField] GameObject _continueButton;
     [SerializeField] GameObject _restartButton;
 
-    [SerializeField] Vector3 _inGameForceCanvasPosition = new(38.7f, -0.52f, -1.15f);
-
     private bool muteMusic;
     private bool muteEffects;
-
-    private readonly string WidthType = "width";
-    private readonly string HeightType = "height";
 
     private void Awake()
     {
@@ -55,7 +56,6 @@ public class UIBehaviour : MonoBehaviour
         _levelText.text = SaveData.Instance.Data.FakeLevel.ToString();
         muteEffects = SaveData.Instance.Data.muteEffects;
         muteMusic = SaveData.Instance.Data.muteMusic;
-        _forceCanvas = PlayerMove.Instance.gameObject.transform.GetChild(3).gameObject;
 
         if (SaveData.Instance.Data.muteMusic == true)
         {
@@ -90,7 +90,6 @@ public class UIBehaviour : MonoBehaviour
     {
         _startMenuPanel.SetActive(false);
         _inGamePanel.SetActive(true);
-        _forceCanvas.transform.localPosition = _inGameForceCanvasPosition;
         PlayerMove.Instance.ResumeMovement();
         FindObjectOfType<PlayerBehaviour>().Play();
     }
@@ -207,27 +206,13 @@ public class UIBehaviour : MonoBehaviour
         _coinText.text = count.ToString();
     }
 
-    public void UpdateWidthCost(int cost)
-    {
-        _widthCostText.text = cost.ToString();
-    }
+    public void UpdateFiringRateCost(int cost) => _firingRateCostText.text = cost.ToString();
 
-    public void UpdateHeightCost(int cost)
-    {
-        _heightCostText.text = cost.ToString();
-    }
+    public void UpdateDamageCost(int cost) => _damageCostText.text = cost.ToString();
 
-    public void HeightIncrease()
-    {
-        CoinManager.Instance.SpendMoney(ImprovementsBehaviour.Instance.CostOfHeightImprovements, HeightType);
-        SoundsManager.Instance.PlaySound("ImprovePerfomance");
-    }
+    public void WebBulletDamageIncrease() => CoinManager.Instance.SpendMoney(ImprovementsBehaviour.Instance.CostOfDamageImprovements, Damage);
 
-    public void WidthIncrease()
-    {
-        CoinManager.Instance.SpendMoney(ImprovementsBehaviour.Instance.CostOfWidthImprovements, WidthType);
-        SoundsManager.Instance.PlaySound("ImprovePerfomance");
-    }
+    public void WebBulletFiringRateIncrease() => CoinManager.Instance.SpendMoney(ImprovementsBehaviour.Instance.CostOfFiringRateImprovements, FiringRate);
 
     public void HitBoss(int _damageCount) 
     {

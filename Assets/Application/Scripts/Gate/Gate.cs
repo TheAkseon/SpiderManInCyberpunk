@@ -12,7 +12,7 @@ public class Gate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.attachedRigidbody.GetComponent<PlayerModifier>())
+        if (other.GetComponent<PlayerModifier>())
         {
             switch (_deformationType)
             {
