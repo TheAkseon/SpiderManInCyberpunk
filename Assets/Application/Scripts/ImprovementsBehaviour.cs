@@ -1,11 +1,13 @@
+using System;
 using UnityEngine;
 
 public class ImprovementsBehaviour : MonoBehaviour
 {
     public static ImprovementsBehaviour Instance;
 
-    public int CostOfHeightImprovements = 10;
-    public int CostOfWidthImprovements = 20;
+    public float CostMultiplier = 1.5f;
+    public int CostOfDamageImprovements = 10;
+    public int CostOfFiringRateImprovements = 20;
 
     public void Awake()
     {
@@ -18,21 +20,23 @@ public class ImprovementsBehaviour : MonoBehaviour
         UpdateView();
     }
 
-    public void IncreaseCostOfHeightImprovements()
+    public void IncreaseCostOfDamageImprovements()
     {
-        CostOfHeightImprovements *= 2;
-        UIBehaviour.Instance.UpdateHeightCost(CostOfHeightImprovements);
+        CostOfDamageImprovements = Convert.ToInt32(CostOfDamageImprovements * CostMultiplier);
+
+        print("Increase " + CostOfDamageImprovements);
+        UIBehaviour.Instance.UpdateDamageCost(CostOfDamageImprovements);
     }
 
-    public void IncreaseCostOfWidthImprovements()
+    public void IncreaseCostOfFiringRateImprovements()
     {
-        CostOfWidthImprovements *= 2;
-        UIBehaviour.Instance.UpdateWidthCost(CostOfWidthImprovements);
+        CostOfFiringRateImprovements = Convert.ToInt32(CostOfFiringRateImprovements * CostMultiplier);
+        UIBehaviour.Instance.UpdateFiringRateCost(CostOfFiringRateImprovements);
     }
 
     public void UpdateView()
     {
-        UIBehaviour.Instance.UpdateHeightCost(CostOfHeightImprovements);
-        UIBehaviour.Instance.UpdateWidthCost(CostOfWidthImprovements);
+        UIBehaviour.Instance.UpdateDamageCost(CostOfDamageImprovements);
+        UIBehaviour.Instance.UpdateFiringRateCost(CostOfFiringRateImprovements);
     }
 }

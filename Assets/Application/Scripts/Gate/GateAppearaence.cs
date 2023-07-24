@@ -2,12 +2,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum DeformationType { 
+public enum GateType { 
     Damage,
     LifeTime,
+    BulletSpeed,
+    SingleShootMode,
     DoubleShootMode,
-    TripleShootMode,
-    BulletSpeed
+    TripleShootMode
 }
 
 public class GateAppearaence : MonoBehaviour
@@ -31,6 +32,7 @@ public class GateAppearaence : MonoBehaviour
 
     [Header("Sprites")]
     // Изображения типа стрельбы
+    [SerializeField] Sprite _singleShootSprite;
     [SerializeField] Sprite _doubleShootSprite;
     [SerializeField] Sprite _tripleShootSprite;
 
@@ -40,16 +42,16 @@ public class GateAppearaence : MonoBehaviour
 
     private static readonly string DamageText = "Урон";
     private static readonly string LifeTimeText = "Дальность выстрела";
+    private static readonly string BulletSpeedText = "Скорость выстрела";
+    private static readonly string SingleShootModeText = "Одинарный выстрел";
     private static readonly string DoubleShootModeText = "Двойной выстрел";
     private static readonly string TripleShootModeText = "Тройной выстрел";
-    private static readonly string BulletSpeedText = "Скорость выстрела";
 
 
-    public void UpdateVisual(DeformationType deformationType, int value)
+    public void UpdateVisual(GateType deformationType, int value)
     {
         string prefix = "";
 
-        
         if (value == 0) 
         {
             SetColor(Color.grey);
@@ -64,27 +66,30 @@ public class GateAppearaence : MonoBehaviour
             SetColor(_colorNegative);
         }
 
-        _downText.text = prefix + value.ToString();
-
-        _expandLable.SetActive(false);
-        _shrinkLable.SetActive(false);
-        _upLable.SetActive(false);
-        _downLable.SetActive(false);
-
         _topText.text = deformationType switch
         {
-            DeformationType.Damage => DamageText,
-            DeformationType.LifeTime => LifeTimeText,
-            DeformationType.DoubleShootMode => DoubleShootModeText,
-            DeformationType.TripleShootMode => TripleShootModeText,
-            DeformationType.BulletSpeed => BulletSpeedText,
+            GateType.Damage => DamageText,
+            GateType.LifeTime => LifeTimeText,
+            GateType.BulletSpeed => BulletSpeedText,
+            GateType.SingleShootMode => SingleShootModeText,
+            GateType.DoubleShootMode => DoubleShootModeText,
+            GateType.TripleShootMode => TripleShootModeText,
             _ => string.Empty,
+        };
+
+        _downText.text = deformationType switch
+        {
+            GateType.SingleShootMode => string.Empty,
+            GateType.DoubleShootMode => string.Empty,
+            GateType.TripleShootMode => string.Empty,
+            _ => prefix + value.ToString()
         };
 
         _downImage.sprite = deformationType switch
         {
-            DeformationType.DoubleShootMode => _doubleShootSprite,
-            DeformationType.TripleShootMode => _tripleShootSprite,
+            GateType.SingleShootMode => _singleShootSprite,
+            GateType.DoubleShootMode => _doubleShootSprite,
+            GateType.TripleShootMode => _tripleShootSprite,
             _ => null
         };
     }

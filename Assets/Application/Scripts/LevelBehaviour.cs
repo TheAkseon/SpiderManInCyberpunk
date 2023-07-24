@@ -22,7 +22,6 @@ public class LevelBehaviour : MonoBehaviour
         {
             SaveData.Instance.Data.FakeLevel = next;
             SaveData.Instance.Data.CurrentLevel = SceneManager.GetActiveScene().buildIndex + 1;
-            SaveData.Instance.Data.Score += ForceManager.Instance.NumberOfForce;
             SaveData.Instance.Save();
         }
         else
