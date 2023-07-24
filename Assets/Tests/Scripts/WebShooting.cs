@@ -5,7 +5,8 @@ public class WebShooting : MonoBehaviour
     public static WebShooting Instance;
 
     [SerializeField] private GameObject Web;
-    [SerializeField] private float _baseFiringFrequency = 1f;
+    
+    [SerializeField] private float _baseFiringFrequency = 1f; // Нужно сохранять
     [SerializeField] private float _firingFrequency = 1f;
 
     private Transform _playertransform;
@@ -21,15 +22,22 @@ public class WebShooting : MonoBehaviour
     private void Start()
     {
         _playertransform = GetComponent<Transform>();
+        _firingFrequency = _baseFiringFrequency;
         _currentTimeBetweenShots = 1 / _firingFrequency;
     }
 
     public void ChangeShootMode(GateType mode) => _shootMode = mode.ToString();
+    public void ChangeBaseFiringFrequency(float value)
+    {
+        _baseFiringFrequency += value;
+        SetFiringFrequency(_baseFiringFrequency);
+    }
+    public void SetFiringFrequency(float value) => _firingFrequency = value;
     public void ChangeFiringFrequency(float value) => _firingFrequency = _firingFrequency + value < _baseFiringFrequency ? _baseFiringFrequency : _firingFrequency + value;
 
     void FixedUpdate()
     {
-        //print("Damage: " + WebBullet.GetDamage() + "   LifeTime: " + WebBullet.GetLifeTime() + "\nFrequency: " + _firingFrequency + "   ShootMode: " + _shootMode);
+        print("Damage: " + WebBullet.GetDamage() + "   LifeTime: " + WebBullet.GetLifeTime() + "\nFrequency: " + _firingFrequency + "   ShootMode: " + _shootMode);
 
         if (GetComponent<PlayerMove>().CanMove())
         {
