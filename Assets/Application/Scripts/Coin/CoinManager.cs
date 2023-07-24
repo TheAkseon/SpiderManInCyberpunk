@@ -1,10 +1,12 @@
 using UnityEngine;
+using System;
 
 public class CoinManager : MonoBehaviour
 {
     public static CoinManager Instance;
 
-    [SerializeField] private int _forceAmount = 15;
+    private readonly string Damage = "width";
+    private readonly string FiringRate = "height";
 
     private void Awake()
     {
@@ -27,22 +29,24 @@ public class CoinManager : MonoBehaviour
     }
 
     // 1-width 2-height
-    public void SpendMoney(int value, string typeOfReduction) {
+    public void SpendMoney(int value, string typeOfReduction)
+    {
+        print(value + " " + SaveData.Instance.Data.Coins);
         if (value <= SaveData.Instance.Data.Coins)
         {
             SaveData.Instance.Data.Coins -= value;
-            if (typeOfReduction.Equals("width"))
+            if (typeOfReduction.Equals(Damage))
             {
-                ImprovementsBehaviour.Instance.IncreaseCostOfWidthImprovements();
-                PlayerModifier.Instance.AddWidth(_forceAmount);
+                ImprovementsBehaviour.Instance.IncreaseCostOfDamageImprovements();
+                WebBullet.ChangeDamage(Convert.ToInt32(UIBehaviour.Instance._damageImprovementCount.text));
             }
-            else if (typeOfReduction.Equals("height"))
+            else if (typeOfReduction.Equals(FiringRate))
             {
-                ImprovementsBehaviour.Instance.IncreaseCostOfHeightImprovements();
-                PlayerModifier.Instance.AddHeight(_forceAmount);
+                ImprovementsBehaviour.Instance.IncreaseCostOfFiringRateImprovements();
+                WebShooting.Instance.ChangeFiringFrequency(Convert.ToSingle(UIBehaviour.Instance._firingRateImprovementCount.text));
             }
-            ForceManager.Instance.AddForce(_forceAmount);
 
+            SoundsManager.Instance.PlaySound("ImprovePerfomance");
             UpdateView();
         }
     }

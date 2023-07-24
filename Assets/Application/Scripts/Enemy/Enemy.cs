@@ -30,12 +30,12 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (other.gameObject.TryGetComponent(out Web webBullet))
+        if (other.gameObject.TryGetComponent(out WebBehaviour webBullet))
         {
             SoundsManager.Instance.PlaySound("WebHit");
             Destroy(other.gameObject);
             Instantiate(_hitEffectPrefab, _particlePosition.position, transform.rotation);
-            GetDamage(webBullet.Damage);
+            GetDamage(WebBullet.GetDamage());
         }
     }
 

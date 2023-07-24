@@ -9,7 +9,6 @@ public class Boss : MonoBehaviour
     
     [SerializeField] private int _numberOfForce;
     [SerializeField] private TextMeshProUGUI _countForceText;
-    [SerializeField] private ForceManager _forceManager;
     [SerializeField] private GameObject _hitEffectPrefab;
 
     private bool _isNeedDie = true;
@@ -26,8 +25,6 @@ public class Boss : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
-
-        _forceManager = FindObjectOfType<ForceManager>();
     }
 
     private void Start()
@@ -64,7 +61,7 @@ public class Boss : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Web webBullet))
+        if (other.gameObject.TryGetComponent(out WebBehaviour webBullet))
         {
             Instantiate(_hitEffectPrefab, other.gameObject.transform.position, transform.rotation);
             Destroy(other.gameObject);
@@ -72,15 +69,7 @@ public class Boss : MonoBehaviour
 
         if (other.gameObject.TryGetComponent(out PlayerModifier playerModifier))
         {
-            if (_numberOfForce < _forceManager.NumberOfForce)
-            {
-                Fight?.Invoke(this);
-            }
-            else if (_numberOfForce >= _forceManager.NumberOfForce)
-            {
-                Destroy(other.gameObject);
-                UIBehaviour.Instance.GameOver(true);
-            }
+            Fight?.Invoke(this);
         }
     }
 }
