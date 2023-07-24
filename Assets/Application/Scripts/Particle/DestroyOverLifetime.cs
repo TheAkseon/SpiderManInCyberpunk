@@ -8,4 +8,6 @@ public class DestroyOverLifetime : MonoBehaviour
     {
         Destroy(gameObject, _lifeTime);
     }
+
+    public void Destroy() => Destroy(gameObject);
 }
