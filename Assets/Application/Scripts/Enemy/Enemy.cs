@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
     public void GetDamage(int damage)
     {
         _numberOfHealth -= damage;
+        GetComponent<HP_Animation>().SpawnCanvas(transform, damage);
         if (_numberOfHealth <= 0)
         {
             Instantiate(_dieEffectPrefab, _particlePosition.position, transform.rotation);

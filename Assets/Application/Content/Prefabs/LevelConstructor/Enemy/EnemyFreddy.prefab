@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 8138814613346156588}
   - component: {fileID: 2632935489576582409}
   - component: {fileID: 2952924295058074721}
+  - component: {fileID: 1470096597}
   m_Layer: 0
   m_Name: EnemyFreddy
   m_TagString: Untagged
@@ -116,6 +117,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1470096597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7351242929443989255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea4f56eca14bf243a4435a3a48b4ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flyingHPCanvasPrefab: {fileID: 7528020063063354275, guid: cf26313c149e1fb43a37143be3893729,
+    type: 3}
+  _xPositionOffset: 0.8
+  _maxPosition: 0.25
+  _maxRotation: 0.5
 --- !u!1001 &2505723845355623294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -186,7 +204,7 @@ PrefabInstance:
     - target: {fileID: 3099756444790363380, guid: fcc14e869c415a041998fecea76bf320,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.505
       objectReference: {fileID: 0}
     - target: {fileID: 3099756444790363380, guid: fcc14e869c415a041998fecea76bf320,
         type: 3}
@@ -211,12 +229,12 @@ PrefabInstance:
     - target: {fileID: 3099756444790363380, guid: fcc14e869c415a041998fecea76bf320,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -0.167
       objectReference: {fileID: 0}
     - target: {fileID: 3099756444790363380, guid: fcc14e869c415a041998fecea76bf320,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.728
+      value: 2.906
       objectReference: {fileID: 0}
     - target: {fileID: 3099756444790363380, guid: fcc14e869c415a041998fecea76bf320,
         type: 3}
