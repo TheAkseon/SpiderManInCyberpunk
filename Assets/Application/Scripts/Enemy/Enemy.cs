@@ -23,14 +23,14 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.TryGetComponent(out PlayerModifier player))
+        if (other.gameObject.TryGetComponent(out PlayerModifier _))
         {
             Instantiate(_dieEffectPrefab, _particlePosition.position, transform.rotation);
             PlayerModifier.Instance.Die();
             Destroy(gameObject);
         }
 
-        if (other.gameObject.TryGetComponent(out WebBehaviour webBullet))
+        if (other.gameObject.TryGetComponent(out WebBehaviour _))
         {
             SoundsManager.Instance.PlaySound("WebHit");
             Destroy(other.gameObject);
@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
 
     public void GetDamage(int damage)
     {
+        _numberOfHealth -= damage;
         if (_numberOfHealth <= 0)
         {
             Instantiate(_dieEffectPrefab, _particlePosition.position, transform.rotation);
@@ -48,12 +49,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            _numberOfHealth -= damage;
-
-            if (_numberOfHealth > 0)
-            {
-                _countHealthText.text = _numberOfHealth.ToString();
-            }
+            _countHealthText.text = _numberOfHealth.ToString();
         }
     }
     public void SetHealth(int value)

@@ -7731,16 +7731,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 390021275289208802, guid: a78f8acf6b409934fae8a16b5edea551,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: WebBulletFiringRateIncrease
-      objectReference: {fileID: 0}
-    - target: {fileID: 751632765371121356, guid: a78f8acf6b409934fae8a16b5edea551,
-        type: 3}
-      propertyPath: m_text
-      value: 0,5
-      objectReference: {fileID: 0}
     - target: {fileID: 3227535361982765825, guid: a78f8acf6b409934fae8a16b5edea551,
         type: 3}
       propertyPath: m_Pivot.x
@@ -7851,16 +7841,6 @@ PrefabInstance:
       propertyPath: _inputSlider
       value: 
       objectReference: {fileID: 891608230}
-    - target: {fileID: 5242081877770468741, guid: a78f8acf6b409934fae8a16b5edea551,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1491692913}
-    - target: {fileID: 5242081877770468741, guid: a78f8acf6b409934fae8a16b5edea551,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: WebBulletDamageIncrease
-      objectReference: {fileID: 0}
     - target: {fileID: 8274755869130482666, guid: a78f8acf6b409934fae8a16b5edea551,
         type: 3}
       propertyPath: m_Name
@@ -7868,18 +7848,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a78f8acf6b409934fae8a16b5edea551, type: 3}
---- !u!114 &1491692913 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3914886286988772161, guid: a78f8acf6b409934fae8a16b5edea551,
-    type: 3}
-  m_PrefabInstance: {fileID: 1491692912}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80b45bd3e5bacf044a9c1f9a8b039080, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1499967869
 GameObject:
   m_ObjectHideFlags: 0

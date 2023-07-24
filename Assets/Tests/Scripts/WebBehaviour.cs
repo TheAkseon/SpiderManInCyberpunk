@@ -5,6 +5,11 @@ public class WebBehaviour : MonoBehaviour
 {
     private float _lifeTime = WebBullet.GetLifeTime();
 
+    private void Start()
+    {
+        WebBullet.SetDamage(WebBullet.GetBaseDamage());
+    }
+
     private void FixedUpdate()
     { 
         transform.Translate(Time.deltaTime * WebBullet.GetSpeed() * Vector3.forward);
@@ -23,7 +28,7 @@ public class WebBehaviour : MonoBehaviour
 [Serializable]
 public static class WebBullet
 {
-    private static readonly int _baseDamage = 5;
+    private static int _baseDamage = 5; // Íóæíî ñîõðàíÿòü
     private static readonly float _baseLifeTime = 1f;
     private static readonly float _baseSpeed = 30f;
 
@@ -32,6 +37,13 @@ public static class WebBullet
     private static float _speed = 30f;
 
     public static int GetDamage() => _damage;
+    public static int GetBaseDamage() => _baseDamage;
+    public static void SetDamage(int value) => _damage = value;
+    public static void ChangeBaseDamage(int value)
+    {
+        _baseDamage += value;
+        SetDamage(_baseDamage);
+    }
     public static void ChangeDamage(int value) /*ÊÈÐÈËËÓ ÍÅ ÏÎÊÀÇÛÂÀÒÜ*/ => /* <--- âîò ýòî*/ _damage = _damage + value < _baseDamage ? _baseDamage : _damage + value;
 
     public static float GetLifeTime() => _lifeTime;

@@ -31,19 +31,21 @@ public class CoinManager : MonoBehaviour
     // 1-width 2-height
     public void SpendMoney(int value, string typeOfReduction)
     {
-        print(value + " " + SaveData.Instance.Data.Coins);
         if (value <= SaveData.Instance.Data.Coins)
         {
             SaveData.Instance.Data.Coins -= value;
             if (typeOfReduction.Equals(Damage))
             {
                 ImprovementsBehaviour.Instance.IncreaseCostOfDamageImprovements();
-                WebBullet.ChangeDamage(Convert.ToInt32(UIBehaviour.Instance._damageImprovementCount.text));
+                WebBullet.ChangeBaseDamage(Convert.ToInt32(UIBehaviour.Instance._damageImprovementCount.text));
             }
             else if (typeOfReduction.Equals(FiringRate))
             {
                 ImprovementsBehaviour.Instance.IncreaseCostOfFiringRateImprovements();
-                WebShooting.Instance.ChangeFiringFrequency(Convert.ToSingle(UIBehaviour.Instance._firingRateImprovementCount.text));
+                string text = UIBehaviour.Instance._firingRateImprovementCount.text;
+                text = text[..text.IndexOf('/')];
+                print(text);
+                WebShooting.Instance.ChangeBaseFiringFrequency(Convert.ToSingle(text));
             }
 
             SoundsManager.Instance.PlaySound("ImprovePerfomance");
