@@ -80,8 +80,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4257464, y: 2.7993999, z: 0.83408475}
-  m_Center: {x: -0.097144336, y: 1.4528091, z: 0}
+  m_Size: {x: 1.4257464, y: 2.7993999, z: 1.7428151}
+  m_Center: {x: -0.097144365, y: 1.4528091, z: -0.089133084}
 --- !u!114 &2632935489576582409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dbf9790227e55448b27da45c3cd8f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfHealth: 1
+  _numberOfHealth: 1000
   _countHealthText: {fileID: 1524042108833484311}
   _hitEffectPrefab: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7,
     type: 3}
@@ -131,7 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flyingHPCanvasPrefab: {fileID: 7528020063063354275, guid: cf26313c149e1fb43a37143be3893729,
     type: 3}
-  _xPositionOffset: 0.8
+  _xPositionOffset: 0
+  _yPositionOffset: 3.1
   _maxPosition: 0.25
   _maxRotation: 0.5
 --- !u!1001 &2830759058748701267
@@ -350,7 +351,7 @@ PrefabInstance:
     - target: {fileID: 3099756444790363380, guid: fcc14e869c415a041998fecea76bf320,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3.329
+      value: 2.904
       objectReference: {fileID: 0}
     - target: {fileID: 3099756444790363380, guid: fcc14e869c415a041998fecea76bf320,
         type: 3}

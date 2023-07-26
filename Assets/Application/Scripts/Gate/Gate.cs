@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
-    [SerializeField] private int _value;
+    [SerializeField] private float _value;
     [SerializeField] private GateType _deformationType;
     [SerializeField] private GateAppearaence _gateAppearaence;
     [SerializeField] private GameObject _effectPrefab;
@@ -17,12 +18,13 @@ public class Gate : MonoBehaviour
             switch (_deformationType)
             {
                 case GateType.Damage:
-                        WebBullet.ChangeDamage(_value);
+                        WebBullet.ChangeDamage(Convert.ToInt32(_value));
                     break;
                 case GateType.LifeTime:
-                        WebBullet.ChangeLifeTime(_value);
+                    _value /= 2;    
+                    WebBullet.ChangeLifeTime(_value);
                     break;
-                case GateType.BulletSpeed:
+                case GateType.FiringFrequency:
                     other.GetComponent<WebShooting>().ChangeFiringFrequency(_value);
                     break;
                 default:
