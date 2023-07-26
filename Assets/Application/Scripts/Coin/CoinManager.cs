@@ -44,7 +44,6 @@ public class CoinManager : MonoBehaviour
                 ImprovementsBehaviour.Instance.IncreaseCostOfFiringRateImprovements();
                 string text = UIBehaviour.Instance._firingRateImprovementCount.text;
                 text = text[..text.IndexOf('/')];
-                print(text);
                 WebShooting.Instance.ChangeBaseFiringFrequency(Convert.ToSingle(text));
             }
 

@@ -35,6 +35,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4280543314080670655, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
         type: 3}
+      propertyPath: _value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280543314080670655, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
+        type: 3}
       propertyPath: _deformationType
       value: 4
       objectReference: {fileID: 0}

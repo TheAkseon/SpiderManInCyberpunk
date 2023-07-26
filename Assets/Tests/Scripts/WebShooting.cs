@@ -24,6 +24,9 @@ public class WebShooting : MonoBehaviour
         _playertransform = GetComponent<Transform>();
         _firingFrequency = _baseFiringFrequency;
         _currentTimeBetweenShots = 1 / _firingFrequency;
+
+        WebBullet.SetDamage(WebBullet.GetBaseDamage());
+        WebBullet.SetLifeTime(WebBullet.GetBaseLifeTime());
     }
 
     public void ChangeShootMode(GateType mode) => _shootMode = mode.ToString();

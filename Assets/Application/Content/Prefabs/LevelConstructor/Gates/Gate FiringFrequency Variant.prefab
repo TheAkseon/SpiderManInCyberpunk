@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 538792789083379668, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1465365118010950620, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
         type: 3}
       propertyPath: m_IsActive
@@ -15,7 +20,7 @@ PrefabInstance:
     - target: {fileID: 4280543314080670655, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
         type: 3}
       propertyPath: _value
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4280543314080670655, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
         type: 3}
@@ -30,27 +35,82 @@ PrefabInstance:
     - target: {fileID: 6555268846609394348, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
         type: 3}
       propertyPath: m_text
-      value: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u0432\u044B\u0441\u0442\u0440\u0435\u043B\u0430"
+      value: "\u0427\u0430\u0441\u0442\u043E\u0442\u0430 \u0432\u044B\u0441\u0442\u0440\u0435\u043B\u0430"
       objectReference: {fileID: 0}
     - target: {fileID: 6555268846609394348, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
         type: 3}
       propertyPath: m_fontSize
-      value: 19.35
+      value: 20.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360079722096811007, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360079722096811007, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.018588543
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360079722096811007, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360079722172878931, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 171.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360079722172878931, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 135.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360079722172878931, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000095367
       objectReference: {fileID: 0}
     - target: {fileID: 7360079722172878932, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
         type: 3}
       propertyPath: m_text
-      value: +1
+      value: +0,5/c
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360079722172878932, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 55.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360079722172878932, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7360079723492558888, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7360079723492558888, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360079723492558888, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.018588543
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360079723492558888, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7360079724015291704, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
         type: 3}
       propertyPath: m_Name
-      value: Gate BulletSpeed Variant
+      value: Gate FiringFrequency Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7360079724015291705, guid: 25d3c468b2f130c46a20c24b14cfa9f8,
         type: 3}

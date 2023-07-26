@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public enum GateType { 
     Damage,
     LifeTime,
-    BulletSpeed,
+    FiringFrequency,
     SingleShootMode,
     DoubleShootMode,
     TripleShootMode
@@ -42,13 +42,13 @@ public class GateAppearaence : MonoBehaviour
 
     private static readonly string DamageText = "Урон";
     private static readonly string LifeTimeText = "Дальность выстрела";
-    private static readonly string BulletSpeedText = "Скорость выстрела";
+    private static readonly string FiringFrequencyText = "Частота выстрела";
     private static readonly string SingleShootModeText = "Одинарный выстрел";
     private static readonly string DoubleShootModeText = "Двойной выстрел";
     private static readonly string TripleShootModeText = "Тройной выстрел";
 
 
-    public void UpdateVisual(GateType deformationType, int value)
+    public void UpdateVisual(GateType deformationType, float value)
     {
         string prefix = "";
 
@@ -70,7 +70,7 @@ public class GateAppearaence : MonoBehaviour
         {
             GateType.Damage => DamageText,
             GateType.LifeTime => LifeTimeText,
-            GateType.BulletSpeed => BulletSpeedText,
+            GateType.FiringFrequency => FiringFrequencyText,
             GateType.SingleShootMode => SingleShootModeText,
             GateType.DoubleShootMode => DoubleShootModeText,
             GateType.TripleShootMode => TripleShootModeText,
@@ -79,6 +79,7 @@ public class GateAppearaence : MonoBehaviour
 
         _downText.text = deformationType switch
         {
+            GateType.FiringFrequency => prefix + value.ToString() + "/c",
             GateType.SingleShootMode => string.Empty,
             GateType.DoubleShootMode => string.Empty,
             GateType.TripleShootMode => string.Empty,
@@ -96,6 +97,8 @@ public class GateAppearaence : MonoBehaviour
 
     void SetColor(Color color) {
         _topImage.color = color;
+        color.a = 0.5f;
+        _downImage.color = color;
         _glassImage.color = new Color(color.r, color.g, color.b, 0.5f);
     }
 
