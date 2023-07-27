@@ -220,9 +220,9 @@ public class UIBehaviour : MonoBehaviour
 
     public void WebBulletFiringRateIncrease() => CoinManager.Instance.SpendMoney(ImprovementsBehaviour.Instance.CostOfFiringRateImprovements, FiringRate);
 
-    public void HitBoss(int _damageCount) 
+    public void HitBoss() 
     {
-        Boss.Instance.TakeDamage(_damageCount);
+        Boss.Instance.TakeDamage(WebBullet.GetDamage());
 
         if (FindObjectOfType<BossFight>()._isFight == true)
         {

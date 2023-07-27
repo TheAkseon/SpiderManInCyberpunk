@@ -12,9 +12,9 @@ public class BossHealthBar : MonoBehaviour
 
     private void Start()
     {
-        _healthBar.maxValue = _boss.MaxHealth;
-        _healthBar.value = _boss.Health;
-        _healthBar.minValue = _boss.MinHealth;
+        _healthBar.maxValue = _boss.GetForce();
+        _healthBar.value = _healthBar.maxValue;
+        _healthBar.minValue = 0;
     }
 
     private void OnEnable()
