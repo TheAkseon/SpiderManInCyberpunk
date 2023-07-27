@@ -40,6 +40,8 @@ public class CoinManager : MonoBehaviour
                 text = text[1..];
                 print(text);
                 WebBullet.ChangeBaseDamage(Convert.ToInt32(text));
+                SaveData.Instance.Data.BaseDamage = WebBullet.GetBaseDamage();
+                SaveData.Instance.SaveYandex();
                 ImprovementsBehaviour.Instance.IncreaseCostOfDamageImprovements();
             }
             else if (typeOfReduction.Equals(FiringRate))
@@ -48,6 +50,8 @@ public class CoinManager : MonoBehaviour
                 text = text[1..];
                 print(text);
                 WebShooting.Instance.ChangeBaseFiringRate(Convert.ToSingle(text));
+                SaveData.Instance.Data.BaseFiringRate = WebShooting.Instance.GetFiringRate();
+                SaveData.Instance.SaveYandex();
                 ImprovementsBehaviour.Instance.IncreaseCostOfFiringRateImprovements();
             }
 

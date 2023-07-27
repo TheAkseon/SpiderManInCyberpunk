@@ -25,6 +25,9 @@ public class WebShooting : MonoBehaviour
         _firingRate = _baseFiringRate;
         _currentTimeBetweenShots = 1 / _firingRate;
 
+        WebBullet.SetBaseDamage(SaveData.Instance.Data.BaseDamage);
+        _firingRate = SaveData.Instance.Data.BaseFiringRate;
+
         WebBullet.SetDamage(WebBullet.GetBaseDamage());
         WebBullet.SetLifeTime(WebBullet.GetBaseLifeTime());
 

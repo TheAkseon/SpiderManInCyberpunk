@@ -24,7 +24,7 @@ public class WebBehaviour : MonoBehaviour
 public static class WebBullet
 {
     private static int _baseDamage = 1; // Нужно сохранять
-    private static readonly float _baseLifeTime = 0.5f;
+    private static float _baseLifeTime = 0.5f;
     private static readonly float _baseSpeed = 30f;
 
     private static int _damage;
@@ -40,6 +40,11 @@ public static class WebBullet
     {
         _baseDamage += value;
         SetDamage(_baseDamage);
+    }
+
+    public static void SetBaseDamage(int value)
+    {
+        _baseDamage = value;
     }
 
     public static float GetLifeTime() => _lifeTime;

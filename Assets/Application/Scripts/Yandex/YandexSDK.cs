@@ -48,6 +48,10 @@ public class YandexSDK : MonoBehaviour
         {
             SaveData.Instance.Data.CurrentLevel = 1;
             SaveData.Instance.Data.FakeLevel = 1;
+            SaveData.Instance.Data.CostOfDamageImprovements = 10;
+            SaveData.Instance.Data.CostOfFiringRateImprovements = 20;
+            SaveData.Instance.Data.BaseDamage = 1;
+            SaveData.Instance.Data.BaseFiringRate = 1;
         }
 
         _levelLoader.LoadLevel(SaveData.Instance.Data.CurrentLevel);
@@ -105,6 +109,10 @@ public class YandexSDK : MonoBehaviour
             {
                 SaveData.Instance.Data.CurrentLevel = 1;
                 SaveData.Instance.Data.FakeLevel = 1;
+                SaveData.Instance.Data.CostOfDamageImprovements = 10;
+                SaveData.Instance.Data.CostOfFiringRateImprovements = 20;
+                SaveData.Instance.Data.BaseDamage = 1;
+                SaveData.Instance.Data.BaseFiringRate = 1;
             }
 
             //SaveData.Instance.SetLeaderboardScore();
