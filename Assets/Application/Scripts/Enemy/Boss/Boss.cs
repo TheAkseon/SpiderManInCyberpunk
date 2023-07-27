@@ -7,7 +7,7 @@ public class Boss : MonoBehaviour
 {
     public static Boss Instance;
     
-    [SerializeField] private int _force;
+    [SerializeField] private int _numberOfForce;
     [SerializeField] private TextMeshProUGUI _countForceText;
     [SerializeField] private GameObject _hitEffectPrefab;
 
@@ -17,6 +17,10 @@ public class Boss : MonoBehaviour
     public event UnityAction<int> HealthChanged;
     public event UnityAction Die;
 
+    public int Health { get; private set; } = 100;
+    public int MaxHealth { get; private set; } = 100;
+    public int MinHealth { get; private set; } = 0;
+
     private void Awake()
     {
         if (Instance == null)
@@ -25,31 +29,28 @@ public class Boss : MonoBehaviour
 
     private void Start()
     {
-        _force = 30 + SceneManager.GetActiveScene().buildIndex * 5;
-        _countForceText.text = _force.ToString();
+        _numberOfForce = 30 + SceneManager.GetActiveScene().buildIndex * 5;
+        _countForceText.text = _numberOfForce.ToString();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int amountDifference)
     {
         if (FindObjectOfType<BossFight>()._isFight)
         {
             CameraShake();
-            _force -= damage;
+            Health -= amountDifference;
 
-            if (_force <= 0)
+            if (Health < MinHealth)
             {
                 if (_isNeedDie)
                 {
                     _isNeedDie = false;
+                    Health = MinHealth;
                     Die?.Invoke();
                 }
-                _force = 0;
             }
 
-            GetComponent<HP_Animation>().SpawnCanvas(transform, damage);
-            _countForceText.text = _force.ToString();
-
-            HealthChanged?.Invoke(_force);
+            HealthChanged?.Invoke(Health);
         }
     }
 
@@ -71,6 +72,4 @@ public class Boss : MonoBehaviour
             Fight?.Invoke(this);
         }
     }
-
-    public int GetForce() => _force;
 }

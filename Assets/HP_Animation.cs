@@ -5,25 +5,26 @@ public class HP_Animation : MonoBehaviour
 {
     [SerializeField] private GameObject _flyingHPCanvasPrefab;
 
-    [Header("Position")]
     [SerializeField] private float _xPositionOffset = 0f;
     [SerializeField] private float _yPositionOffset = 0.1f;
-    [SerializeField] private float _zPositionOffset = 0.1f;
     [SerializeField] private float _maxPosition = 0.25f;
+    [SerializeField] private float _maxRotation = 0.5f;
 
     private TextMeshProUGUI _hpText;
 
     private Vector3 _randomPosition;
+    private Quaternion _randomRotation;
 
     public void SpawnCanvas(Transform _player, int value)
     {
         GameObject canvas = Instantiate(_flyingHPCanvasPrefab, _player);
 
-        _randomPosition = new Vector3(_xPositionOffset + Random.Range(-_maxPosition, _maxPosition), _yPositionOffset, _zPositionOffset);
+        _randomPosition = new Vector3(_xPositionOffset + Random.Range(-_maxPosition, _maxPosition), _yPositionOffset, 0f);
+        _randomRotation = new Quaternion(0f, 0f, 0f, _maxRotation);
 
         _hpText = canvas.transform.GetComponentInChildren<TextMeshProUGUI>();
         _hpText.text = value.ToString();
 
-        canvas.transform.localPosition = _randomPosition;
+        canvas.transform.SetLocalPositionAndRotation(_randomPosition, _randomRotation);
     }
 }
