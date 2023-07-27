@@ -29,6 +29,12 @@ public class SaveData : MonoBehaviour
     public void NewData()
     {
         _data = new DataHolder();
+        _data.CurrentLevel = 1;
+        _data.FakeLevel = 1;
+        _data.CostOfDamageImprovements = 10;
+        _data.CostOfFiringRateImprovements = 20;
+        _data.BaseDamage = 1;
+        _data.BaseFiringRate = 1;
     }
 
     private void Update()
@@ -97,4 +103,8 @@ public class DataHolder
     public int FakeLevel;
     public bool muteMusic;
     public bool muteEffects;
+    public int CostOfDamageImprovements;
+    public int CostOfFiringRateImprovements;
+    public int BaseDamage;
+    public float BaseFiringRate;
 }

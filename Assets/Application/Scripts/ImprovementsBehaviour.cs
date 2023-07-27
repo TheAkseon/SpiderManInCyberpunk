@@ -16,15 +16,25 @@ public class ImprovementsBehaviour : MonoBehaviour
             Instance = this;
     }
 
+    private void Start()
+    {
+        CostOfDamageImprovements = SaveData.Instance.Data.CostOfDamageImprovements;
+        CostOfFiringRateImprovements = SaveData.Instance.Data.CostOfFiringRateImprovements;
+    }
+
     public void IncreaseCostOfDamageImprovements()
     {
         CostOfDamageImprovements = Convert.ToInt32(CostOfDamageImprovements * CostMultiplier);
+        SaveData.Instance.Data.CostOfDamageImprovements = CostOfDamageImprovements;
+        SaveData.Instance.SaveYandex();
         UpdateView();
     }
 
     public void IncreaseCostOfFiringRateImprovements()
     {
         CostOfFiringRateImprovements = Convert.ToInt32(CostOfFiringRateImprovements * CostMultiplier);
+        SaveData.Instance.Data.CostOfFiringRateImprovements = CostOfFiringRateImprovements;
+        SaveData.Instance.SaveYandex();
         UpdateView();
     }
 
