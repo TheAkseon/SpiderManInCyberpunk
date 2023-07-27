@@ -16,26 +16,17 @@ public class ImprovementsBehaviour : MonoBehaviour
             Instance = this;
     }
 
-    private void Start()
-    {
-        UpdateView();
-    }
-
     public void IncreaseCostOfDamageImprovements()
     {
         CostOfDamageImprovements = Convert.ToInt32(CostOfDamageImprovements * CostMultiplier);
-        UIBehaviour.Instance.UpdateDamageCost(CostOfDamageImprovements);
+        UpdateView();
     }
 
     public void IncreaseCostOfFiringRateImprovements()
     {
         CostOfFiringRateImprovements = Convert.ToInt32(CostOfFiringRateImprovements * CostMultiplier);
-        UIBehaviour.Instance.UpdateFiringRateCost(CostOfFiringRateImprovements);
+        UpdateView();
     }
 
-    public void UpdateView()
-    {
-        UIBehaviour.Instance.UpdateDamageCost(CostOfDamageImprovements);
-        UIBehaviour.Instance.UpdateFiringRateCost(CostOfFiringRateImprovements);
-    }
+    public void UpdateView() => UIBehaviour.Instance.UpdateImprovements(CostOfFiringRateImprovements, CostOfDamageImprovements);
 }
