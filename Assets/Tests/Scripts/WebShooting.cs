@@ -6,8 +6,8 @@ public class WebShooting : MonoBehaviour
 
     [SerializeField] private GameObject Web;
     
-    [SerializeField] private float _baseFiringFrequency = 1f; // Нужно сохранять
-    [SerializeField] private float _firingFrequency = 1f;
+    [SerializeField] private float _baseFiringRate = 1f; // Нужно сохранять
+    [SerializeField] private float _firingRate = 1f;
 
     private Transform _playertransform;
     private string _shootMode = "SingleShootMode";
@@ -22,25 +22,28 @@ public class WebShooting : MonoBehaviour
     private void Start()
     {
         _playertransform = GetComponent<Transform>();
-        _firingFrequency = _baseFiringFrequency;
-        _currentTimeBetweenShots = 1 / _firingFrequency;
+        _firingRate = _baseFiringRate;
+        _currentTimeBetweenShots = 1 / _firingRate;
 
         WebBullet.SetDamage(WebBullet.GetBaseDamage());
         WebBullet.SetLifeTime(WebBullet.GetBaseLifeTime());
+
+        ImprovementsBehaviour.Instance.UpdateView();
     }
 
     public void ChangeShootMode(GateType mode) => _shootMode = mode.ToString();
-    public void ChangeBaseFiringFrequency(float value)
+    public void ChangeBaseFiringRate(float value)
     {
-        _baseFiringFrequency += value;
-        SetFiringFrequency(_baseFiringFrequency);
+        _baseFiringRate += value;
+        SetFiringRate(_baseFiringRate);
     }
-    public void SetFiringFrequency(float value) => _firingFrequency = value;
-    public void ChangeFiringFrequency(float value) => _firingFrequency = _firingFrequency + value < _baseFiringFrequency ? _baseFiringFrequency : _firingFrequency + value;
+    public void SetFiringRate(float value) => _firingRate = value;
+    public float GetFiringRate() => _firingRate;
+    public void ChangeFiringRate(float value) => _firingRate = _firingRate + value < _baseFiringRate ? _baseFiringRate : _firingRate + value;
 
     void FixedUpdate()
     {
-        print("Damage: " + WebBullet.GetDamage() + "   LifeTime: " + WebBullet.GetLifeTime() + "\nFrequency: " + _firingFrequency + "   ShootMode: " + _shootMode);
+        //print("Damage: " + WebBullet.GetDamage() + "   LifeTime: " + WebBullet.GetLifeTime() + "\nFrequency: " + _firingRate + "   ShootMode: " + _shootMode);
 
         if (GetComponent<PlayerMove>().CanMove())
         {
@@ -69,7 +72,7 @@ public class WebShooting : MonoBehaviour
                         break;
                 }
 
-                _currentTimeBetweenShots = 1 / _firingFrequency;
+                _currentTimeBetweenShots = 1 / _firingRate;
             }
             _currentTimeBetweenShots -= Time.fixedDeltaTime;
         } 

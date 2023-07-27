@@ -21,10 +21,12 @@ public class UIBehaviour : MonoBehaviour
     [SerializeField] TextMeshProUGUI _coinText;
 
     [Header("Improvements")]
+    [SerializeField] private TextMeshProUGUI _currentDamage;
+    [SerializeField] private TextMeshProUGUI _currentFiringRate;
     public TextMeshProUGUI _damageImprovementCount;
     public TextMeshProUGUI _firingRateImprovementCount;
-    [SerializeField] TextMeshProUGUI _damageCostText;
-    [SerializeField] TextMeshProUGUI _firingRateCostText;
+    [SerializeField] private TextMeshProUGUI _damageCostText;
+    [SerializeField] private TextMeshProUGUI _firingRateCostText;
     private readonly string Damage = "width";
     private readonly string FiringRate = "height";
 
@@ -206,9 +208,13 @@ public class UIBehaviour : MonoBehaviour
         _coinText.text = count.ToString();
     }
 
-    public void UpdateFiringRateCost(int cost) => _firingRateCostText.text = cost.ToString();
-
-    public void UpdateDamageCost(int cost) => _damageCostText.text = cost.ToString();
+    public void UpdateImprovements(int firingRateCost, int damageCost)
+    {
+        _firingRateCostText.text = firingRateCost.ToString();
+        _damageCostText.text = damageCost.ToString();
+        _currentDamage.text = WebBullet.GetDamage().ToString();
+        _currentFiringRate.text = WebShooting.Instance.GetFiringRate().ToString();
+    }
 
     public void WebBulletDamageIncrease() => CoinManager.Instance.SpendMoney(ImprovementsBehaviour.Instance.CostOfDamageImprovements, Damage);
 

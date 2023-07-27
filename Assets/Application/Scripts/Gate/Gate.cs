@@ -25,7 +25,7 @@ public class Gate : MonoBehaviour
                     WebBullet.ChangeLifeTime(_value);
                     break;
                 case GateType.FiringFrequency:
-                    other.GetComponent<WebShooting>().ChangeFiringFrequency(_value);
+                    other.GetComponent<WebShooting>().ChangeFiringRate(_value);
                     break;
                 default:
                     other.GetComponent<WebShooting>().ChangeShootMode(_deformationType);
