@@ -156,6 +156,7 @@ public class CasesManager : MonoBehaviour
 
     public void ExitCases()
     {
+        //здесь можно добавить рекламу, но только с плашкой 3 2 1 реклама
         gameObject.SetActive(false);
         LevelBehaviour.Instance.NextLevel();
         SaveData.Instance.SaveYandex();

@@ -20,6 +20,7 @@ public class ImprovementsBehaviour : MonoBehaviour
     {
         CostOfDamageImprovements = SaveData.Instance.Data.CostOfDamageImprovements;
         CostOfFiringRateImprovements = SaveData.Instance.Data.CostOfFiringRateImprovements;
+        UpdateView();
     }
 
     public void IncreaseCostOfDamageImprovements()
@@ -38,5 +39,10 @@ public class ImprovementsBehaviour : MonoBehaviour
         UpdateView();
     }
 
-    public void UpdateView() => UIBehaviour.Instance.UpdateImprovements(CostOfFiringRateImprovements, CostOfDamageImprovements);
+    public void UpdateView()
+    {
+        Debug.Log("Стоимость улучшения дамага - " + CostOfDamageImprovements);
+        Debug.Log("Стоимость улучшения скорости стрельбы - " + CostOfFiringRateImprovements);
+        UIBehaviour.Instance.UpdateImprovements(CostOfFiringRateImprovements, CostOfDamageImprovements);
+    }
 }

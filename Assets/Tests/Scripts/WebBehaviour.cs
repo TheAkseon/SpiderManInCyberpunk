@@ -33,7 +33,7 @@ public static class WebBullet
 
     public static int GetDamage() => _damage;
     public static void SetDamage(int value) => _damage = value;
-    public static void ChangeDamage(int value) /*ÊÈÐÈËËÓ ÍÅ ÏÎÊÀÇÛÂÀÒÜ*/ => /* <--- âîò ýòî*/ _damage = _damage + value < _baseDamage ? _baseDamage : _damage + value;
+    public static void ChangeDamage(int value) => _damage = _damage + value < _baseDamage ? _baseDamage : _damage + value;
     
     public static int GetBaseDamage() => _baseDamage;
     public static void ChangeBaseDamage(int value)

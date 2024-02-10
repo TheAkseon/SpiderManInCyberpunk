@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -9,6 +10,7 @@ public class PlayerMove : MonoBehaviour
 
     // New movement
     [SerializeField] private float speed = 2;
+    [SerializeField] private float speedX = 2;
     [SerializeField] float _maxPosX = 3f;
     [SerializeField] private float _timeApplyInvulnerble = 0.1f;
 
@@ -46,6 +48,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (_canMove)
         {
+            HandleInput();
             Move();
         }
     }
@@ -77,10 +80,20 @@ public class PlayerMove : MonoBehaviour
 
     private void Move()
     {
-        _xPos = Mathf.SmoothDamp(transform.position.x, _playerPosition.x, ref _xVelocity, _smoothHorizontalTime);
-        _zPos += speed * Time.fixedDeltaTime;
+        Vector3 newPosition = transform.position + Vector3.forward * speed * Time.deltaTime;
+        transform.position = newPosition;
+    }
 
-        transform.position = new Vector3(_xPos, transform.position.y, _zPos);
+    private void HandleInput()
+    {
+        if (InputManager.IsMoving("Mouse X") && InputManager.IsLeftMouseButtonDown())
+        {
+            float movementVectorX = InputManager.GetAxis("Mouse X");
+            float newPositionX = Mathf.Clamp(transform.position.x + movementVectorX, -_maxPosX, _maxPosX);
+            
+            Vector3 newPosition = transform.position + new Vector3(newPositionX - transform.position.x, 0, 0) * speedX * Time.deltaTime;
+            transform.position = newPosition;
+        }
     }
 
     public void StopMovement() => _canMove = false;

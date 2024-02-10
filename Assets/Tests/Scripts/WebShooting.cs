@@ -26,8 +26,10 @@ public class WebShooting : MonoBehaviour
         _currentTimeBetweenShots = 1 / _firingRate;
 
         WebBullet.SetBaseDamage(SaveData.Instance.Data.BaseDamage);
+        Debug.Log("Сейчас дамаг равен - " + SaveData.Instance.Data.BaseDamage);
         _firingRate = SaveData.Instance.Data.BaseFiringRate;
-
+        Debug.Log("Сейчас скорость стрельбы равна - " + _firingRate);
+        _baseFiringRate = _firingRate;
         WebBullet.SetDamage(WebBullet.GetBaseDamage());
         WebBullet.SetLifeTime(WebBullet.GetBaseLifeTime());
 
@@ -37,12 +39,17 @@ public class WebShooting : MonoBehaviour
     public void ChangeShootMode(GateType mode) => _shootMode = mode.ToString();
     public void ChangeBaseFiringRate(float value)
     {
+        Debug.Log("обычный firing rate " + _firingRate);
+        Debug.Log("базовый firing rate " + _baseFiringRate);
         _baseFiringRate += value;
         SetFiringRate(_baseFiringRate);
     }
     public void SetFiringRate(float value) => _firingRate = value;
     public float GetFiringRate() => _firingRate;
-    public void ChangeFiringRate(float value) => _firingRate = _firingRate + value < _baseFiringRate ? _baseFiringRate : _firingRate + value;
+    public void ChangeFiringRate(float value)
+    {
+        _firingRate = _firingRate + value < _baseFiringRate ? _baseFiringRate : _firingRate + value;
+    }
 
     void FixedUpdate()
     {

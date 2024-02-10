@@ -159,6 +159,7 @@ public class UIBehaviour : MonoBehaviour
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
         Time.timeScale = 0f;
+        //здесь скорее всего нужно добавить плашку через 3 2 1 реклама
         YandexAds.Instance.ShowRewardAd();
         StartCoroutine(CheckRewarded());
 #else

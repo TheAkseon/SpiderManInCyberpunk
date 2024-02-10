@@ -19,6 +19,7 @@ public class PlayerModifier : MonoBehaviour
     public void Die()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
+        //здесь нужно добавить плашку через 3 2 1 реклама
         YandexAds.Instance.ShowInterstitial();
 #endif
         UIBehaviour.Instance.GameOver(false);

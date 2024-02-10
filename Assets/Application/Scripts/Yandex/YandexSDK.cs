@@ -64,7 +64,8 @@ public class YandexSDK : MonoBehaviour
 
         yield return GetData();
 
-        InterstitialAd.Show(null, (bool _) => StartGame());
+        //InterstitialAd.Show(null, (bool _) => StartGame());
+        StartGame();
 #endif
     }
 

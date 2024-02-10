@@ -17,107 +17,107 @@ MonoBehaviour:
     Key: 1
     FolderPath: Application\Content\Audio\Music\
     Name: level1.mp3
-    Preload: 0
+    Preload: 1
     _id: 29cb30fe-3076-43fc-a3f5-29d03ce86ee9
   - Clip: {fileID: 8300000, guid: 63d0393501b850d46a4bf2dc8b8831a1, type: 3}
     Key: 2
     FolderPath: Application\Content\Audio\Music\
     Name: level2.mp3
-    Preload: 0
+    Preload: 1
     _id: 0cb0861b-6b95-4577-8bf8-ed6a875879a7
   - Clip: {fileID: 8300000, guid: 36a485ca9da3c3846a4e7320560f64ef, type: 3}
     Key: 3
     FolderPath: Application\Content\Audio\Music\
     Name: level3.mp3
-    Preload: 0
+    Preload: 1
     _id: 79c83db3-b169-4cc0-8e5e-99c8dc068f99
   - Clip: {fileID: 8300000, guid: 920495fb54fc1ff459040f962dbdfe97, type: 3}
     Key: 4
     FolderPath: Application\Content\Audio\Music\
     Name: level4.mp3
-    Preload: 0
+    Preload: 1
     _id: 1767d8e2-1719-4e2f-bfa1-e72ad3d48dc1
   - Clip: {fileID: 8300000, guid: 3208a5ce7e4ad4c4696cd00b44cc06bb, type: 3}
     Key: 5
     FolderPath: Application\Content\Audio\Music\
     Name: level5.mp3
-    Preload: 0
+    Preload: 1
     _id: 880f904f-eff4-4e6d-8ba8-f0ef009abcbf
   - Clip: {fileID: 8300000, guid: 5a2b6b8d4828f5c4eada3befb80de544, type: 3}
     Key: 6
     FolderPath: Application\Content\Audio\Music\
     Name: level6.mp3
-    Preload: 0
+    Preload: 1
     _id: adbfa150-2df8-4de7-8def-5abbc0562f9e
   - Clip: {fileID: 8300000, guid: 8de60a418cf98fc4685f614688caf85d, type: 3}
     Key: WinRobot
     FolderPath: Application\Content\Audio\Music\EnemyDied\
     Name: WinRobot.mp3
-    Preload: 0
+    Preload: 1
     _id: 3abca052-4c2e-4b86-aa65-27a891b36990
   - Clip: {fileID: 8300000, guid: 92ff859b603582141af16a3aa1976b66, type: 3}
     Key: WinFnafFirst
     FolderPath: Application\Content\Audio\Music\EnemyDied\
     Name: WinFnafFirst.mp3
-    Preload: 0
+    Preload: 1
     _id: d9f18633-1fe1-4877-bcb2-804dd05ce439
   - Clip: {fileID: 8300000, guid: c1d3c2178bdb78449a4b74f23ff65462, type: 3}
     Key: WinFnafSecond
     FolderPath: Application\Content\Audio\Music\EnemyDied\
     Name: WinFnafSecond.mp3
-    Preload: 0
+    Preload: 1
     _id: 040a4219-3986-4df2-8e10-370dbca1b098
   - Clip: {fileID: 8300000, guid: 84aa6bfd1e0395945bba93451216c936, type: 3}
     Key: WinWolverine
     FolderPath: Application\Content\Audio\Music\EnemyDied\
     Name: WinWolverine.mp3
-    Preload: 0
+    Preload: 1
     _id: f9107f6c-ed8d-4849-9341-abdfad62c3d4
   - Clip: {fileID: 8300000, guid: 080c1dc10b3e17c4da6d92793e1e476d, type: 3}
     Key: Nitro
     FolderPath: Application\Content\Audio\Effects\
-    Name: Nitro.mp3
-    Preload: 0
+    Name: nitro.mp3
+    Preload: 1
     _id: 4853fe31-4dd4-4b44-97cb-c216a9e98319
   - Clip: {fileID: 8300000, guid: cc437aa4b000ee04f9a725f3c7631266, type: 3}
     Key: CatchBonus
     FolderPath: Application\Content\Audio\Effects\
     Name: CatchBonus.mp3
-    Preload: 0
+    Preload: 1
     _id: 73a4dd0c-924e-4e05-9b96-b4ea433cd09e
   - Clip: {fileID: 8300000, guid: 13d097ab4293a08488a2a26ce894891a, type: 3}
     Key: CatchCoin
     FolderPath: Application\Content\Audio\Effects\
     Name: CatchCoin.mp3
-    Preload: 0
+    Preload: 1
     _id: 8e2322b6-7fc4-499c-ad69-9e5d14e4e5da
   - Clip: {fileID: 8300000, guid: 5b359bacbb3e1b240bbf4c55bd129d33, type: 3}
     Key: EnemyDie
     FolderPath: Application\Content\Audio\Effects\
     Name: EnemyDie.mp3
-    Preload: 0
+    Preload: 1
     _id: 7c5214c6-bc81-4b0c-a624-0d94dd75a761
   - Clip: {fileID: 8300000, guid: b906894a774d90d4ab815693b7c662bc, type: 3}
     Key: ImprovePerfomance
     FolderPath: Application\Content\Audio\Effects\
     Name: ImprovePerfomance.mp3
-    Preload: 0
+    Preload: 1
     _id: 63182de9-7ab7-4f90-8fe3-2eb88765f755
   - Clip: {fileID: 8300000, guid: 5ade006858abc814faeeb6d568f47ca8, type: 3}
     Key: WebHit
     FolderPath: Application\Content\Audio\Effects\
     Name: WebHit.mp3
-    Preload: 0
+    Preload: 1
     _id: 12724207-a2da-4ef6-802b-fe794ede5ce7
   - Clip: {fileID: 8300000, guid: f28e5862159846e43a867afe564fe2f9, type: 3}
     Key: BossHit
     FolderPath: Application\Content\Audio\Effects\
     Name: HitBoss.mp3
-    Preload: 0
+    Preload: 1
     _id: d535fa01-892f-4f78-980f-2f6c2ae84d75
   - Clip: {fileID: 8300000, guid: 3639b3d0bed342d4688b054d7af7ccf8, type: 3}
     Key: GameOver
     FolderPath: Application\Content\Audio\Music\EnemyDied\
     Name: GameOver.mp3
-    Preload: 0
+    Preload: 1
     _id: 61ae88f9-bf73-47cc-b1ef-b77c27243871
