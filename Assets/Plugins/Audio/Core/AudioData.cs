@@ -6,9 +6,9 @@ namespace Plugins.Audio.Core
     [Serializable]
     public class AudioData
     {
-#if !UNITY_WEBGL || UNITY_EDITOR
+//#if !UNITY_WEBGL || UNITY_EDITOR
         public AudioClip Clip;
-#endif
+//#endif
 
         public string Key;
         public string FolderPath;

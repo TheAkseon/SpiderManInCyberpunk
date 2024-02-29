@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Agava.WebUtility;
 using Agava.YandexGames;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -36,26 +37,8 @@ public class YandexSDK : MonoBehaviour
     private IEnumerator Start()
     {
 #if !UNITY_WEBGL || UNITY_EDITOR
-        _levelLoader = FindObjectOfType<LevelLoader>();
-        SaveData.Instance.Load();
-
-        if (SaveData.Instance.Data == null)
-        {
-            SaveData.Instance.NewData();
-        }
-
-        if (SaveData.Instance.Data.CurrentLevel == 0 && SaveData.Instance.Data.FakeLevel == 0)
-        {
-            SaveData.Instance.Data.CurrentLevel = 1;
-            SaveData.Instance.Data.FakeLevel = 1;
-            SaveData.Instance.Data.CostOfDamageImprovements = 10;
-            SaveData.Instance.Data.CostOfFiringRateImprovements = 20;
-            SaveData.Instance.Data.BaseDamage = 1;
-            SaveData.Instance.Data.BaseFiringRate = 1;
-        }
-
-        _levelLoader.LoadLevel(SaveData.Instance.Data.CurrentLevel);
-        yield return null;
+        InitializeGameData();
+        yield break; // Завершаем корутину для не UNITY_WEBGL платформ
 #else
         yield return YandexGamesSdk.Initialize();
 
@@ -64,59 +47,62 @@ public class YandexSDK : MonoBehaviour
 
         yield return GetData();
 
-        //InterstitialAd.Show(null, (bool _) => StartGame());
-        StartGame();
+        // Показываем рекламу перед стартом игры, если необходимо
+        InterstitialAd.Show(null, (bool _) => StartGame());
+        //StartGame(); // Начинаем игру
 #endif
     }
 
-    private void OnEnable()
+    private void InitializeGameData()
     {
-        WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
+        _levelLoader = FindObjectOfType<LevelLoader>();
+        SaveData.Instance.Load();
+
+        if (SaveData.Instance.Data == null)
+        {
+            CreateNewGameData();
+        }
+        else
+        {
+            _levelLoader.LoadLevel(SaveData.Instance.Data.CurrentLevel);
+        }
     }
 
-    private void OnDisable()
+    private void CreateNewGameData()
     {
-        WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
+        SaveData.Instance.NewData();
+        InitializeNewPlayerData();
+        SaveManager.Save(_saveKey, SaveData.Instance.Data); // Сохраняем новые данные
+        StartGame(); // Начинаем игру с новыми данными
     }
 
-    private void OnInBackgroundChange(bool inBackground)
+    private void InitializeNewPlayerData()
     {
-        if (!IsAdRunning)
-            MuteAudio(inBackground);
-    }
-
-    private void MuteAudio(bool value)
-    {
-        Time.timeScale = value ? 0f : 1f;
-        AudioListener.pause = value;
-        AudioListener.volume = value ? 0f : 1f;
-        SoundsManager.Instance.Mute("music", value);
-        SoundsManager.Instance.Mute("effects", value);
+        SaveData.Instance.Data.CurrentLevel = 1;
+        SaveData.Instance.Data.FakeLevel = 1;
+        SaveData.Instance.Data.CostOfDamageImprovements = 10;
+        SaveData.Instance.Data.CostOfFiringRateImprovements = 20;
+        SaveData.Instance.Data.BaseDamage = 1;
+        SaveData.Instance.Data.BaseFiringRate = 1;
     }
 
     private void StartGame()
     {
         if (YandexGamesSdk.IsInitialized)
         {
-            _levelLoader = FindObjectOfType<LevelLoader>();
-            SaveData.Instance.Load();
-
-            if (SaveData.Instance.Data == null)
+            YandexGamesSdk.GameReady();
+            if (_levelLoader == null)
             {
-                SaveData.Instance.NewData();
+                _levelLoader = FindObjectOfType<LevelLoader>();
             }
 
             if (SaveData.Instance.Data.CurrentLevel == 0 && SaveData.Instance.Data.FakeLevel == 0)
             {
-                SaveData.Instance.Data.CurrentLevel = 1;
-                SaveData.Instance.Data.FakeLevel = 1;
-                SaveData.Instance.Data.CostOfDamageImprovements = 10;
-                SaveData.Instance.Data.CostOfFiringRateImprovements = 20;
-                SaveData.Instance.Data.BaseDamage = 1;
-                SaveData.Instance.Data.BaseFiringRate = 1;
+                SaveData.Instance.NewData();
+                InitializeNewPlayerData();
+                SaveManager.Save(_saveKey, SaveData.Instance.Data);
             }
 
-            //SaveData.Instance.SetLeaderboardScore();
             _levelLoader.LoadLevel(SaveData.Instance.Data.CurrentLevel);
         }
     }
@@ -151,3 +137,5 @@ public class YandexSDK : MonoBehaviour
         }
     }
 }
+
+
